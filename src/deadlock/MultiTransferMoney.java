@@ -1,4 +1,5 @@
-import TransferMoney.Account;
+package deadlock;
+
 import java.util.Random;
 
 /**
@@ -14,7 +15,7 @@ public class MultiTransferMoney {
     public static void main(String[] args) {
 
         Random rnd = new Random();
-        Account[] accounts = new Account[NUM_ACCOUNTS];
+        /*Account[] accounts = new Account[NUM_ACCOUNTS];
         for (int i = 0; i < accounts.length; i++) {
             accounts[i] = new Account(NUM_MONEY);
         }
@@ -33,6 +34,6 @@ public class MultiTransferMoney {
         }
         for (int i = 0; i < NUM_THREADS; i++) {
             new TransferThread().start();
-        }
+        }*/
     }
 }
