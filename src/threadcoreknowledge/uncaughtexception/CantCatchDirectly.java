@@ -18,6 +18,7 @@ public class CantCatchDirectly implements Runnable {
             Thread.sleep(300);
             new Thread(new CantCatchDirectly(), "MyThread-4").start();
         } catch (RuntimeException e) {
+            //e.printStackTrace();
             System.out.println("Caught Exception.");
         }
 
@@ -28,7 +29,8 @@ public class CantCatchDirectly implements Runnable {
         try {
             throw new RuntimeException();
         } catch (RuntimeException e) {
-            System.out.println("Caught Exception.");
+            e.printStackTrace();
+//            System.out.println("Caught Exception.");
         }
     }
 }

@@ -24,7 +24,7 @@ public class WaitNotifyAll implements Runnable {
         });
         threadA.start();
         threadB.start();
-//        Thread.sleep(200);
+        Thread.sleep(200);
         threadC.start();
     }
     @Override

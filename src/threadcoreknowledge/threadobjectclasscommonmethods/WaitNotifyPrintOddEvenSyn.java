@@ -13,30 +13,56 @@ public class WaitNotifyPrintOddEvenSyn {
     //1个只处理偶数，第二个只处理奇数（用位运算）
     //用synchronized来通信
     public static void main(String[] args) {
-        new Thread(new Runnable() {
+        long start = System.currentTimeMillis();
+        Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (count < 100) {
+                while (count <= (1000000-1)) {
                     synchronized (lock) {
                         if ((count & 1) == 0) {
                             System.out.println(Thread.currentThread().getName() + ":" + count++);
+                            lock.notify();
+                        }else if (count < (1000000-1)){
+                            try {
+                                lock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
             }
-        }, "偶数").start();
+        }, "偶数");
 
-        new Thread(new Runnable() {
+        Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (count < 100) {
+                while (count <= 1000000) {
                     synchronized (lock) {
                         if ((count & 1) == 1) {
                             System.out.println(Thread.currentThread().getName() + ":" + count++);
+                            lock.notify();
+                        }else if (count < 1000000){
+                            try {
+                                lock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
+
                     }
                 }
             }
-        }, "奇数").start();
+        }, "奇数");
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(System.currentTimeMillis()-start);
     }
 }

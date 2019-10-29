@@ -11,6 +11,7 @@ public class WaitNotifyPrintOddEveWait {
 
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         new Thread(new TurningRunner(), "偶数").start();
         new Thread(new TurningRunner(), "奇数").start();
     }

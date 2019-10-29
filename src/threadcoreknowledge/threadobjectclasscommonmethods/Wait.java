@@ -14,7 +14,8 @@ public class Wait {
             synchronized (object) {
                 System.out.println(Thread.currentThread().getName() + "开始执行了");
                 try {
-                    object.wait();
+//                    object.wait();
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -28,7 +29,7 @@ public class Wait {
         @Override
         public void run() {
             synchronized (object) {
-                object.notify();
+                object.notifyAll();
                 System.out.println("线程" + Thread.currentThread().getName() + "调用了notify()");
             }
         }
