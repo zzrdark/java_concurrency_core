@@ -1,3 +1,5 @@
+package background;
+
 /**
  * 描述：     用工厂模式修复刚才的初始化问题
  */
@@ -9,7 +11,7 @@ public class MultiThreadsError7 {
     private MultiThreadsError7(MySource source) {
         listener = new EventListener() {
             @Override
-            public void onEvent(MultiThreadsError5.Event e) {
+            public void onEvent(MultiThreadsError7.Event e) {
                 System.out.println("\n我得到的数字是" + count);
             }
 
@@ -32,15 +34,15 @@ public class MultiThreadsError7 {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                mySource.eventCome(new MultiThreadsError5.Event() {
+                mySource.eventCome(new MultiThreadsError7.Event() {
                 });
             }
         }).start();
-        MultiThreadsError7 multiThreadsError7 = new MultiThreadsError7(mySource);
+        MultiThreadsError7 multiThreadsError7 = MultiThreadsError7.getInstance(mySource);
     }
 
     static class MySource {
@@ -51,7 +53,7 @@ public class MultiThreadsError7 {
             this.listener = eventListener;
         }
 
-        void eventCome(MultiThreadsError5.Event e) {
+        void eventCome(MultiThreadsError7.Event e) {
             if (listener != null) {
                 listener.onEvent(e);
             } else {
@@ -63,7 +65,7 @@ public class MultiThreadsError7 {
 
     interface EventListener {
 
-        void onEvent(MultiThreadsError5.Event e);
+        void onEvent(MultiThreadsError7.Event e);
     }
 
     interface Event {

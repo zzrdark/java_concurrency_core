@@ -1,9 +1,12 @@
+package background;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 描述：     第一种：运行结果出错。 演示计数不准确（减少），找出具体出错的位置。
+ * 描述：     第一种：运行结果出错。
+ * 演示计数不准确（减少），找出具体出错的位置。
  */
 public class MultiThreadsError implements Runnable {
 

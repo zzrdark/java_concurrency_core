@@ -13,6 +13,11 @@ public class MultiThreadsError6 {
             @Override
             public void run() {
                 states = new HashMap<>();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 states.put("1", "周一");
                 states.put("2", "周二");
                 states.put("3", "周三");
@@ -27,7 +32,7 @@ public class MultiThreadsError6 {
 
     public static void main(String[] args) throws InterruptedException {
         MultiThreadsError6 multiThreadsError6 = new MultiThreadsError6();
-        Thread.sleep(1000);
+
         System.out.println(multiThreadsError6.getStates().get("1"));
     }
 }
