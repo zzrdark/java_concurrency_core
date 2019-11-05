@@ -1,3 +1,5 @@
+package jmm;
+
 /**
  * 描述：     演示可见性带来的问题
  */
@@ -19,18 +21,18 @@ public class FieldVisibilityABCD {
 
 
     private void print() {
+        int aa;
         synchronized (this) {
-            int aa = a;
+            aa = a;
         }
         int bb = b;
         int cc = c;
         int dd = d;
 
-        System.out.println("b=" + b + ";a=" + a);
+        System.out.println("aa=" + aa + ";bb=" + bb + ";cc=" + cc + ";dd=" + dd);
     }
 
     public static void main(String[] args) {
-        while (true) {
             FieldVisibilityABCD test = new FieldVisibilityABCD();
             new Thread(new Runnable() {
                 @Override
@@ -43,8 +45,12 @@ public class FieldVisibilityABCD {
                     test.change();
                 }
             }).start();
-
-            new Thread(new Runnable() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -55,7 +61,6 @@ public class FieldVisibilityABCD {
                     test.print();
                 }
             }).start();
-        }
 
     }
 

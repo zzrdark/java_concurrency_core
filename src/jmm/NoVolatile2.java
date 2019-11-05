@@ -1,3 +1,5 @@
+package jmm;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

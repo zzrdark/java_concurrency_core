@@ -1,3 +1,5 @@
+package jmm;
+
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -5,8 +7,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class OutOfOrderExecution {
 
-    private static int x = 0, y = 0;
-    private static int a = 0, b = 0;
+    private static /*volatile*/ int x = 0, y = 0;
+    private static /*volatile*/ int a = 0, b = 0;
 
     public static void main(String[] args) throws InterruptedException {
         int i = 0;
@@ -55,7 +57,10 @@ public class OutOfOrderExecution {
             if (x == 0 && y == 0) {
                 System.out.println(result);
                 break;
-            } else {
+            } /*else if (x == 1 && y == 1){
+                System.out.println(result);
+                break;
+            }*/else{
                 System.out.println(result);
             }
         }
