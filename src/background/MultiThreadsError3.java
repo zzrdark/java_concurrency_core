@@ -29,9 +29,9 @@ public class MultiThreadsError3 {
     public static void main(String[] args) {
         MultiThreadsError3 multiThreadsError3 = new MultiThreadsError3();
         Map<String, String> states = multiThreadsError3.getStates();
-//        System.out.println(states.get("1"));
-//        states.remove("1");
-//        System.out.println(states.get("1"));
+        /*System.out.println(states.get("1"));
+        states.remove("1");
+        System.out.println(states.get("1"));*/
 
         System.out.println(multiThreadsError3.getStatesImproved().get("1"));
         multiThreadsError3.getStatesImproved().remove("1");
